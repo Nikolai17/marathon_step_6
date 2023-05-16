@@ -10,10 +10,11 @@ import SnapKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Private properties
+
     private lazy var button: UIButton = {
         let button = UIButton()
         var config = UIButton.Configuration.filled()
-//        config.cornerStyle = .fixed
         button.configuration = config
         button.layer.cornerRadius = 10
         button.layer.cornerCurve = .continuous
@@ -21,10 +22,11 @@ class ViewController: UIViewController {
         return button
     }()
 
-    var snap: UISnapBehavior!
-    var animator: UIDynamicAnimator!
+    private var snap: UISnapBehavior!
+    private var animator: UIDynamicAnimator!
 
-
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         animator = UIDynamicAnimator(referenceView: self.view)
