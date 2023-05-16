@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private var collision: UICollisionBehavior!
     private var snap: UISnapBehavior!
     private var animator: UIDynamicAnimator!
 
@@ -48,12 +49,17 @@ class ViewController: UIViewController {
 fileprivate extension ViewController {
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        print("\(sender.location(in: self.view))")
         animateMove(sender.location(in: self.view))
     }
 
     func animateMove(_ point: CGPoint) {
         animator.removeAllBehaviors()
+
+        collision = UICollisionBehavior(items: [button])
+        collision.translatesReferenceBoundsIntoBoundary = true
+
+        animator.addBehavior(collision)
+
         snap = UISnapBehavior(item: button, snapTo: point)
         snap.damping = 1
         animator.addBehavior(snap)
@@ -61,5 +67,7 @@ fileprivate extension ViewController {
             $0.size.equalTo(100)
             $0.center.equalTo(point)
         }
+
+        view.layoutSubviews()
     }
 }
