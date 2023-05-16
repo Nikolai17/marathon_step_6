@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         button.configuration = config
         button.layer.cornerRadius = 10
         button.layer.cornerCurve = .continuous
+        button.isUserInteractionEnabled = false
 
         return button
     }()
@@ -61,13 +62,11 @@ fileprivate extension ViewController {
         animator.addBehavior(collision)
 
         snap = UISnapBehavior(item: button, snapTo: point)
-        snap.damping = 1
+        snap.damping = 0.9
         animator.addBehavior(snap)
         button.snp.remakeConstraints {
             $0.size.equalTo(100)
             $0.center.equalTo(point)
         }
-
-        view.layoutSubviews()
     }
 }
