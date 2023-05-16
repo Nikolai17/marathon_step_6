@@ -1,0 +1,6 @@
+module Pods_step6 {
+  umbrella header "Pods-step6-umbrella.h"
+
+  export *
+  module * { export * }
+}
